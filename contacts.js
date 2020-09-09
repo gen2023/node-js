@@ -21,7 +21,7 @@ const addContact = async (name, email, phone) => {
 
   contactsData.push(newContacts);
   const contactsDataJson = JSON.stringify(contactsData);
-  fs.writeFile(contactsPath, contactsDataJson);
+  await fs.writeFile(contactsPath, contactsDataJson);
   contactsData = await getContact();
   console.table(contactsData);
 };
@@ -35,7 +35,7 @@ getContactById = async (id) => {
 removeContact = async (id) => {
   let contactsData = await getContact();
   const result = contactsData.filter((contact) => contact.id !== id);
-  fs.writeFile(contactsPath, JSON.stringify(result));
+  await fs.writeFile(contactsPath, JSON.stringify(result));
   contactsData = await getContact();
   console.table(contactsData);
 };

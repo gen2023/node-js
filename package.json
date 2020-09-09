@@ -1,0 +1,25 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "Создай ветку 01-node-basics из ветки master.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "dev": "nodemon ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gen2023/node-js.git"
+  },
+  "author": "Evgenii Romanko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gen2023/node-js/issues"
+  },
+  "homepage": "https://github.com/gen2023/node-js#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "yargs": "^16.0.0"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Создай ветку 01-node-basics из ветки master.",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,6 @@
   "homepage": "https://github.com/gen2023/node-js#readme",
   "devDependencies": {
     "nodemon": "^2.0.4",
-    "yargs": "^16.0.0"
+    "yargs": "^16.0.2"
   }
 }

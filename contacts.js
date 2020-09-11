@@ -28,7 +28,7 @@ async function addContact(name, email, phone) {
 
 async function getContactById(id) {
   const contactsData = await getContact();
-  findContact = contactsData.find((contact) => contact.id === id);
+  const findContact = contactsData.find((contact) => contact.id === id);
   console.table(findContact);
 }
 

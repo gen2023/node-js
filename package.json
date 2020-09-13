@@ -1,6 +1,6 @@
 {
   "name": "js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Создай ветку 01-node-basics из ветки master.",
   "main": "index.js",
   "scripts": {

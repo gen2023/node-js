@@ -31,7 +31,7 @@ async function getContactById(id) {
 
 async function removeContact(id) {
   let contactsData = await listContacts();
-  // console.log(contactsData);
+  console.log(contactsData);
   const result = contactsData.filter(contact => contact.id !== id);
   await fs.writeFile(contactsPath, JSON.stringify(result));
   contactsData = await listContacts();

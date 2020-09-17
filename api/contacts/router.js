@@ -42,7 +42,7 @@ contactsRouter.delete('/:id', async (req, res) => {
   const findContacts = await Contacts.getContactById(+id);
 
   if (findContacts) {
-    const contacts = await Contacts.removeContact(+id);
+    await Contacts.removeContact(+id);
     res.status(200).send({ message: 'contact deleted' });
   }
   res.status(404).send({ message: 'not found' });

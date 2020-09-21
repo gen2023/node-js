@@ -21,8 +21,9 @@ async function addContactController(req, res, next) {
 
 async function updateContactController(req, res, next) {
   try {
-    const { id, ...data } = req.body;
-    const updateContact = await ContactDB.updateContact(id, data);
+    const { _id, ...data } = req.body;
+    const updateContact = await ContactDB.updateContact(_id, data);
+
     res.status(200).json(updateContact);
   } catch (err) {
     next(err);

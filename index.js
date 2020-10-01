@@ -22,8 +22,12 @@ const runServer = async (err, req, res) => {
   app.use(cors({ origin: 'http://localhost:3000' }));
 
   const contactsRouter = require('./api/contacts/router');
+  const usersRouter = require('./api/users/router');
+  const authRouter = require('./api/auth/auth.router');
 
   app.use('/contact', contactsRouter);
+  app.use('/user', usersRouter);
+  app.use('/auth', authRouter);
 
   app.use(async (err, req, res, next) => {
     if (err) {

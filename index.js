@@ -1,5 +1,6 @@
 const dotenv = require('dotenv');
 dotenv.config();
+const {urlLocalhost,FOLDER_PUBLIC}=require('./config');
 const PORT = process.env.PORT || 3000;
 const express = require('express');
 
@@ -20,9 +21,9 @@ const runServer = async (err, req, res) => {
   console.log('Database connection successful');
 
   const app = express();
-  app.get(express.static(path.resolve(__dirname, 'public')));
+  app.get(express.static(path.resolve(__dirname, FOLDER_PUBLIC)));
   app.use(express.json());
-  app.use(cors({ origin: 'http://localhost:3000' }));
+  app.use(cors({ origin: urlLocalhost }));
 
   const contactsRouter = require('./api/contacts/router');
   const usersRouter = require('./api/users/router');

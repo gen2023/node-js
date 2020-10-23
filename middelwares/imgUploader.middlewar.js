@@ -1,9 +1,10 @@
 const multer = require('multer');
+const {FOLDER_TO_AVATARS}=require('../config');
 
 const avatarUploader = () => {
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'public/images');
+      cb(null, FOLDER_TO_AVATARS);
     },
     filename: function (req, file, cb) {
       //загрузкакартинки с разным расширением

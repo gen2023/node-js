@@ -2,6 +2,7 @@ const User = require('../users/users.models');
 const bcrypt = require('bcrypt'); //хеширование пароля
 const { createVerificationToken } = require('../../services/token.services');
 const { avatar } = require('../../services/createAvatar');
+const {folderAvatr}=require('../config')
 
 async function registrationController(req, res, next) {
   try {
@@ -9,12 +10,12 @@ async function registrationController(req, res, next) {
     //avatar
     const variant = 'male';
     const image = await avatar.generate(`${body.email}`, variant);
-    image.png().toFile(`public/images/${body.email}.png`);
+    await image.png().toFile(`${process.env.FOLDER}/${body.email}.png`);
     //---------------------------------
     const hashedPassword = await bcrypt.hash(body.password, +process.env.SALT);
     await User.addUser({
       ...body,
-      avatarURL: `http:3000/images/${body.email}.png`,
+      avatarURL: `${folderAvatr(body.email)}.png`,
       password: hashedPassword,
     });
     res.status(200).send('Create user');

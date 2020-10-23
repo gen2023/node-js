@@ -1,5 +1,7 @@
 const UserDB = require('./users.models');
 
+const {folderAvatr}=require('../../config');
+
 async function listUsersController(req, res, next) {
   try {
     const users = await UserDB.listUsers();
@@ -57,7 +59,7 @@ async function uploadAvatarController(req, res, next) {
   try {
     const file = req.file;
     await UserDB.updateUser(req.userId, { avatar: file.path });
-    res.send(`http://licalhost:3000/public/images/${file.filename}`);
+    res.send(folderAvatr(file.filename));
   } catch (error) {
     next(error);
   }

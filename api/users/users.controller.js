@@ -1,5 +1,7 @@
 const UserDB = require('./users.models');
 
+const {folderAvatr}=require('../../config');
+
 async function listUsersController(req, res, next) {
   try {
     const users = await UserDB.listUsers();
@@ -53,10 +55,21 @@ async function findByIdUserController(req, res, next) {
   }
 }
 
+async function uploadAvatarController(req, res, next) {
+  try {
+    const file = req.file;
+    await UserDB.updateUser(req.userId, { avatar: file.path });
+    res.send(folderAvatr(file.filename));
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   listUsersController,
   addUserController,
   updateUserController,
   deleteUserController,
   findByIdUserController,
+  uploadAvatarController,
 };

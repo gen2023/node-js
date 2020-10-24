@@ -7,7 +7,12 @@ const userShema = new mongoose.Schema(
       require: true,
       unique: true,
     },
-
+    avatar: {
+      type: String,
+      require: true,
+      default:
+        'https://cdn1.vectorstock.com/i/1000x1000/66/55/man-avatar-ico-vector-14946655.jpg',
+    },
     subscription: {
       type: String,
       enum: ['free', 'pro', 'premium'],

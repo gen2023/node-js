@@ -1,11 +1,13 @@
 const dotenv = require('dotenv');
 dotenv.config();
+const {urlLocalhost,FOLDER_PUBLIC}=require('./config');
 const PORT = process.env.PORT || 3000;
 const express = require('express');
-const app = express();
+
 const cors = require('cors');
 const mongoose = require('mongoose');
 const fs = require('fs').promises;
+const path = require('path');
 
 const runServer = async (err, req, res) => {
   await mongoose.connect(process.env.DB_URI, {
@@ -18,8 +20,10 @@ const runServer = async (err, req, res) => {
   }
   console.log('Database connection successful');
 
+  const app = express();
+  app.get(express.static(path.resolve(__dirname, FOLDER_PUBLIC)));
   app.use(express.json());
-  app.use(cors({ origin: 'http://localhost:3000' }));
+  app.use(cors({ origin: urlLocalhost }));
 
   const contactsRouter = require('./api/contacts/router');
   const usersRouter = require('./api/users/router');
@@ -40,8 +44,9 @@ const runServer = async (err, req, res) => {
         name: err.message,
       });
       logs = JSON.stringify(logs);
+      await fs.writeFile('errors.logs.json', logs);
       console.error(err);
-      return await fs.writeFile('errors.logs.json', logs);
+      res.status(500).send(err.message);
     }
     console.log('No error');
   });
